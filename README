@@ -7,11 +7,9 @@ This video player is written in Python, and allows full logic control and trigge
 The first version here allows GPIO triggering of videos/logic and is fully configurable much like many commercial video solutions for video kiosks and signage.
 If used simply for looping video, will allow seamless looping with crash protection.
 
-The second version here allows the same functionality but with UDP network packet triggering instead of GPIO input. 
-The third version here adds terminal blanking and clearing so that transitions are blank (black).
-Fourth and fifth are improvements. 
+The other version here allows the same functionality but with UDP network packet triggering instead of GPIO input, and is made to be run by launching the shell script. 
 
-** Highly Recommend you use the v5 version **
+** Instructions below are for the Network triggered version, will combine GPIO and Network in time **
 
 The networking ability means suddenly you can interface and control video playback from a wide range things including:
 - Arduino (UDP sending)
