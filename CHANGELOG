@@ -1,0 +1,3 @@
+26-3-2018 - First version: running, loops, video end detection, GPIO triggers
+11-9-2019 - Second version: Network UDP Triggering! (removed GPIO for now)
+12-9-2019 - Third version: Console blanking and clearing, cleaned up code

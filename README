@@ -1,0 +1,50 @@
+A Raspberry Pi Video content triggered looper/logic player for artists
+
+Initial version by Jesse Stevens (from artist duo Cake Industries) 26-3-2018, network version added 12/9/2019
+
+This video player is written in Python, and allows full logic control and triggering of video playback suitable for artists and creatives.
+
+The first version here allows GPIO triggering of videos/logic and is fully configurable much like many commercial video solutions for video kiosks and signage.
+If used simply for looping video, will allow seamless looping with crash protection.
+
+The second version here allows the same functionality but with UDP network packet triggering instead of GPIO input. 
+The third version here adds terminal blanking and clearing so that transitions are blank (black).
+
+The networking ability means suddenly you can interface and control video playback from a wide range things including:
+- Arduino (UDP sending)
+- MAX/MSP
+- Puredata
+- other programs you write (Python, C, etc etc)
+- random gadgets (as long as you change what packet is matched to trigger)
+
+Future versions will include:
+- scripts for running as system process on boot
+- scripts to automatically mount USB drives and use the contents of the USB as media source
+- scripts for blanking backgrounds etc
+- scripts to mount all USBs in the same position to allow videos to be loaded from USB instead of internal storage
+- more complex options like Raspberry Pi screen configuration etc.
+
+We use this now in our works meshing video with mechatronics/robotics so that we can match up videos with physical movement.
+
+Requirements:
+- Raspbian lite installation (no desktop required)
+- omxplayer
+- python 3 (Python 2 for the GPIO version possibly? Stupid spaces/tabs!)
+- python3-psutil (library) - possibly others
+- possibly other python libraries (I'm sure I'll get back to this to make sure)
+- set gpu-mem to a higher amount to allow better video playback in your /boot/config.txt file:
+    gpu_mem=192
+
+Ensure you have a "video" directory in your pi user's home directory with:
+mkdir /home/pi/video
+
+Disable console "screensaver" so that it never goes blank by adding to the end of "/boot/cmdline.txt":
+consoleblank=0
+
+Also make sure you put videos in that directory, and modify media locations in the top of the python code. H264 videos work best.
+
+I recommend when running and testing via SSH into your Raspberry Pi as you'll lose your console while it runs. (enable SSH on boot up).
+
+To have this permanently run on boot up (after you've tested it properly), simply add to your "/etc/rc.local" (before the "exit 0"):
+"sudo python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v3.py > /dev/null 2>&1 &"
+(change the file name to be whatever version you're using, and don't forget the "&" to make it fork as a process or you'll have a locked up RPi!)
