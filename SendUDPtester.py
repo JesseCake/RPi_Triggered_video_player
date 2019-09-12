@@ -1,3 +1,6 @@
+#This is a simple tester to trigger the video script. Run this on your own machine to trigger the RPi.
+#Make sure you adjust the IP address to suit the address of your RPi
+
 import socket
 
 UDP_IP = "192.168.20.32"
