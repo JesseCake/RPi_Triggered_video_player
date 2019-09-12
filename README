@@ -1,6 +1,6 @@
 A Raspberry Pi Video content triggered looper/logic player for artists
 
-Initial version by Jesse Stevens (from artist duo Cake Industries) 26-3-2018, network version added 12/9/2019
+Initial version by Jesse Stevens (from artist duo Cake Industries) 26-3-2018, network versions added 12/9/2019 onwards.
 
 This video player is written in Python, and allows full logic control and triggering of video playback suitable for artists and creatives.
 
@@ -9,6 +9,9 @@ If used simply for looping video, will allow seamless looping with crash protect
 
 The second version here allows the same functionality but with UDP network packet triggering instead of GPIO input. 
 The third version here adds terminal blanking and clearing so that transitions are blank (black).
+Fourth and fifth are improvements. 
+
+** Highly Recommend you use the v5 version **
 
 The networking ability means suddenly you can interface and control video playback from a wide range things including:
 - Arduino (UDP sending)
@@ -20,7 +23,6 @@ The networking ability means suddenly you can interface and control video playba
 Future versions will include:
 - scripts for running as system process on boot
 - scripts to automatically mount USB drives and use the contents of the USB as media source
-- scripts for blanking backgrounds etc
 - scripts to mount all USBs in the same position to allow videos to be loaded from USB instead of internal storage
 - more complex options like Raspberry Pi screen configuration etc.
 
@@ -35,16 +37,78 @@ Requirements:
 - set gpu-mem to a higher amount to allow better video playback in your /boot/config.txt file:
     gpu_mem=192
 
+Getting running:
+==================
+
+1.
+=====
 Ensure you have a "video" directory in your pi user's home directory with:
 mkdir /home/pi/video
+Place your videos to trigger in here. H264 Videos work best.
+"start.mp4" will run as a placeholder when not triggered and on startup. 
+"video1.mp4" will be played once when triggered from first trigger
+"video2.mp4" will be played once when triggered from second trigger
 
+2.
+=====
 Disable console "screensaver" so that it never goes blank by adding to the end of "/boot/cmdline.txt":
 consoleblank=0
 
-Also make sure you put videos in that directory, and modify media locations in the top of the python code. H264 videos work best.
+3.
+=====
+Place the files:
+"TriggerPlayerLaunch.sh"
+"TriggeredVideoPlayer_NetworkUDPTrigger_v5.py"
+into your home folder (/home/pi/).
 
-I recommend when running and testing via SSH into your Raspberry Pi as you'll lose your console while it runs. (enable SSH on boot up).
+Ensure that the TriggerPlayerLaunch.sh file is executable. You can make it so by typing:
+"chmod a+x /home/pi/TriggerPlayerLaunch.sh"
 
-To have this permanently run on boot up (after you've tested it properly), simply add to your "/etc/rc.local" (before the "exit 0"):
-"sudo python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v3.py > /dev/null 2>&1 &"
-(change the file name to be whatever version you're using, and don't forget the "&" to make it fork as a process or you'll have a locked up RPi!)
+4. 
+=====
+Test that the code works properly by launching it via ssh on your Raspberry Pi (you will lose your console directly on the screen).
+(this may need you to enable SSH access on your Raspberry Pi by creating an empty file called "SSH" on your /boot partition. This will enable it!
+
+You can launch the program to test it directly by typing the following:
+"sudo /home/pi/TriggerPlayerLaunch.sh"
+
+This will take 10 seconds to start running (by design) and you should see it begin to play videos.
+
+If you'd like to test the python script directly, so you can make adjustments or troubleshoot, simply do the following:
+"python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v5.py"
+
+To kill it off, it'll take a couple of Ctrl-c's to stop (threaded processes).
+
+Included in the files is a Python UDP packet sender that will send a UDP packet to trigger video 1: "SendUDPtester.py" 
+You'll need to adjust the IP address in this script to suit the IP of your Raspberry Pi. Each time you run it, it will send a trigger.
+
+If you're successful on this step, and everything is working as you want it to, do the next step.
+
+5.
+=====
+
+Set your Raspberry Pi to start the triggered player on boot up.
+
+Add the following to your "/etc/rc.local" file, BUT BEFORE THE LINE THAT SAYS "exit 0" otherwise your system will hang:
+/home/pi/TriggerPlayerLaunch.sh &
+
+This will now start the triggered player on boot up as a forked background process. Good luck!
+
+ALTERNATE USAGE:
+=================
+
+Perhaps you only want a seamless looping player? You can follow the instructions as above, but simply place your video in the video folder as:
+start.mp4
+
+This will permanently loop the video forever. Without any triggers, it will simply be a looping video player with some crash protection.
+
+
+
+Thanks!
+==========
+We hope this has been useful to you, we've certainly used it a lot in our installation pieces. Feel free to contribute and help make a useful open source player for everybody.
+Don't hesitate to get in touch,
+
+Jesse & Dean
+Cake Industries (artist duo)
+www.cake.net.au
