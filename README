@@ -8,6 +8,7 @@ The first version here allows GPIO triggering of videos/logic and is fully confi
 If used simply for looping video, will allow seamless looping with crash protection.
 
 The other version here allows the same functionality but with UDP network packet triggering instead of GPIO input, and is made to be run by launching the shell script. 
+(older versions with various different methods etc in the /old folder)
 
 ** Instructions below are for the Network triggered version, will combine GPIO and Network in time **
 
@@ -56,7 +57,7 @@ consoleblank=0
 =====
 Place the files:
 "TriggerPlayerLaunch.sh"
-"TriggeredVideoPlayer_NetworkUDPTrigger_v5.py"
+"TriggeredVideoPlayer_NetworkUDPTrigger_v6.py"
 into your home folder (/home/pi/).
 
 Ensure that the TriggerPlayerLaunch.sh file is executable. You can make it so by typing:
@@ -73,7 +74,7 @@ You can launch the program to test it directly by typing the following:
 This will take 10 seconds to start running (by design) and you should see it begin to play videos.
 
 If you'd like to test the python script directly, so you can make adjustments or troubleshoot, simply do the following:
-"python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v5.py"
+"python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v6.py"
 
 To kill it off, it'll take a couple of Ctrl-c's to stop (threaded processes).
 
