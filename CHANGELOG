@@ -1,3 +1,5 @@
 26-3-2018 - First version: running, loops, video end detection, GPIO triggers
 11-9-2019 - Second version: Network UDP Triggering! (removed GPIO for now)
 12-9-2019 - Third version: Console blanking and clearing, cleaned up code
+12-9-2019 - Fourth version: cleaning up code, better running of os commands
+12-9-2019 - Fifth version: made to be launched via script, removed blanking from python and put into script
