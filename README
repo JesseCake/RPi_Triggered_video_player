@@ -58,7 +58,7 @@ consoleblank=0
 =====
 Place the files:
 "TriggerPlayerLaunch.sh"
-"TriggeredVideoPlayer_NetworkUDPTrigger_v8.py"
+"TriggeredVideoPlayer_NetworkUDPTrigger_v9.py"
 into your home folder (/home/pi/).
 
 Ensure that the TriggerPlayerLaunch.sh file is executable. You can make it so by typing:
@@ -75,7 +75,7 @@ You can launch the program to test it directly by typing the following:
 This will take 10 seconds to start running (by design) and you should see it begin to play videos.
 
 If you'd like to test the python script directly, so you can make adjustments or troubleshoot, simply do the following:
-"python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v8.py"
+"python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v9.py"
 
 To kill it off, it'll take a couple of Ctrl-c's to stop (threaded processes).
 
