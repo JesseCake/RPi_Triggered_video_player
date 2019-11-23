@@ -51,8 +51,15 @@ Place your videos to trigger in here. H264 Videos work best.
 
 2.
 =====
+Config and support programs/libraries:
 Disable console "screensaver" so that it never goes blank by adding to the end of "/boot/cmdline.txt":
 consoleblank=0
+Also add the root user (the user that effectively is used to run /etc/rc.local commands) to the tty group:
+sudo adduser root tty
+Install omxplayer:
+sudo apt install omxplayer
+Install Python psutils library:
+sudo apt install python3-psutils
 
 3.
 =====
