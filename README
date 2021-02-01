@@ -59,17 +59,34 @@ sudo adduser root tty
 Install omxplayer:
 sudo apt install omxplayer
 Install Python psutils library:
-sudo apt install python3-psutils
+sudo apt install python3-psutil
+(FOR GPIO VERSION ONLY):
+Install Python library for Raspberry Pi GPIO usage:
+sudo apt install python3-rpi.gpio
 
 3.
 =====
+#################
+For UDP version:
+#################
 Place the files:
-"TriggerPlayerLaunch.sh"
-"TriggeredVideoPlayer_NetworkUDPTrigger_v9.py"
+"TriggerPlayerLaunch_UDP.sh"
+"TriggeredVideoPlayer_NetworkUDP_v9.py"
 into your home folder (/home/pi/).
 
-Ensure that the TriggerPlayerLaunch.sh file is executable. You can make it so by typing:
-"chmod a+x /home/pi/TriggerPlayerLaunch.sh"
+Ensure that the TriggerPlayerLaunch_UDP.sh file is executable. You can make it so by typing:
+"chmod a+x /home/pi/TriggerPlayerLaunch_UDP.sh"
+
+#################
+For GPIO version:
+#################
+Place the files:
+"TriggerPlayerLaunch_GPIO.sh"
+"TriggeredVideoPlayer_GPIO_v9.py"
+into your home folder (/home/pi/).
+
+Ensure that the TriggerPlayerLaunch_GPIO.sh file is executable. You can make it so by typing:
+"chmod a+x /home/pi/TriggerPlayerLaunch_GPIO.sh"
 
 4. 
 =====
@@ -77,16 +94,24 @@ Test that the code works properly by launching it via ssh on your Raspberry Pi (
 (this may need you to enable SSH access on your Raspberry Pi by creating an empty file called "SSH" on your /boot partition. This will enable it!
 
 You can launch the program to test it directly by typing the following:
-"sudo /home/pi/TriggerPlayerLaunch.sh"
+UDP VERSION:
+"sudo /home/pi/TriggerPlayerLaunch_UDP.sh"
 
-This will take 10 seconds to start running (by design) and you should see it begin to play videos.
+GPIO VERSION:
+"sudo /home/pi/TriggerPlayerLaunch_GPIO.sh"
+
+This will take a short moment to start and you should see it begin to play videos.
 
 If you'd like to test the python script directly, so you can make adjustments or troubleshoot, simply do the following:
-"python3 /home/pi/TriggeredVideoPlayer_NetworkUDPTrigger_v9.py"
+UDP VERSION:
+"python3 /home/pi/TriggeredVideoPlayer_NetworkUDP_v9.py"
 
-To kill it off, it'll take a couple of Ctrl-c's to stop (threaded processes).
+GPIO VERSION:
+"python3 /home/pi/TriggeredVideoPlayer_GPIO_v9.py"
 
-Included in the files is a Python UDP packet sender that will send a UDP packet to trigger video 1: "SendUDPtester.py" 
+To kill it off, it might take a couple of Ctrl-c's to stop (threaded processes).
+
+Included in the files is a Python UDP packet sender that will send a UDP packet to trigger video 1 for the UDP version: "SendUDPtester.py" 
 You'll need to adjust the IP address in this script to suit the IP of your Raspberry Pi. Each time you run it, it will send a trigger.
 
 If you're successful on this step, and everything is working as you want it to, do the next step.
@@ -97,7 +122,11 @@ If you're successful on this step, and everything is working as you want it to, 
 Set your Raspberry Pi to start the triggered player on boot up.
 
 Add the following to your "/etc/rc.local" file, BUT BEFORE THE LINE THAT SAYS "exit 0" otherwise your system will hang:
-/home/pi/TriggerPlayerLaunch.sh &
+FOR UDP VERSION:
+/home/pi/TriggerPlayerLaunch_UDP.sh &
+
+FOR GPIO VERSION:
+/home/pi/TriggerPlayerLaunch_GPIO.sh &
 
 This will now start the triggered player on boot up as a forked background process. Good luck!
 
@@ -109,6 +138,7 @@ start.mp4
 
 This will permanently loop the video forever. Without any triggers, it will simply be a looping video player with some crash protection.
 
+Also included here is a prototype dual head video player that will output a different looping video on each output of a Raspberry Pi 4. This is early days for this setup, but very handy to have a single Raspberry pi for two monitors next to each other. This is named "MultiMonitorVideoLooper_v1.py". Use as you wish!
 
 
 Thanks!
