@@ -1,6 +1,6 @@
 A Raspberry Pi Video content triggered looper/logic player for artists
 
-Initial version by Jesse Stevens (from artist duo Cake Industries) 26-3-2018, network versions added 12/9/2019 onwards.
+Initial version by Jesse Stevens (from artist duo Cake Industries) 26-3-2018, network versions added 12/9/2019, GPIO version 1-2-2021.
 
 This video player is written in Python, and allows full logic control and triggering of video playback suitable for artists and creatives.
 
