@@ -1,4 +1,5 @@
-A Raspberry Pi Video content triggered looper/logic player for artists
+A Raspberry Pi Video content triggered looper/logic set of players for artists
+(Loop, trigger, multi-play on multiple monitors, logic trigger, you name it!)
 
 Initial version by Jesse Stevens (from artist duo Cake Industries) 26-3-2018, network versions added 12/9/2019, GPIO version 1-2-2021.
 
